@@ -2,6 +2,7 @@ package ru.netology.test;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.data.DataHelper;
 import ru.netology.page.LoginPage;
@@ -13,11 +14,15 @@ import static com.codeborne.selenide.Selenide.sleep;
 
 
 public class AuthTest {
-    @BeforeAll
-    static void setUp() {
+    @BeforeEach
+    void setUp() {
         open("http://localhost:9999");
     }
 
+    @AfterAll
+    static void deleteData() {
+        DataHelper.clearAllData();
+    }
 
     @Test
     void shouldValidLogin() throws SQLException {
